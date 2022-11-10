@@ -89,7 +89,7 @@ EOF
 
 WORKDIR ${ROOT}/repositories/stable-diffusion
 ENV CLI_ARGS=""
-EXPOSE 7860
+EXPOSE 80
 ENTRYPOINT ["/docker/entrypoint.sh"]
 # run, -u to not buffer stdout / stderr
-CMD python3 -u ../../webui.py --listen --port 7860 --ckpt-dir ${ROOT}/models/Stable-diffusion ${CLI_ARGS}
+CMD python3 -u ../../webui.py --listen --port 80 --ckpt-dir ${ROOT}/models/Stable-diffusion ${CLI_ARGS}
