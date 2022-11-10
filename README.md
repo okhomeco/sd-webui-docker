@@ -1,3 +1,14 @@
+# Setup
+
+```
+docker compose --profile download up --build
+ # wait until its done, then:
+```
+```
+docker compose --profile auto up --build
+
+```
+
 # Stable Diffusion WebUI Docker
 
 Run Stable Diffusion on your machine with a nice UI without any hassle!
