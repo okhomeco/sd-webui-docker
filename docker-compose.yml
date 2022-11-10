@@ -2,7 +2,7 @@ version: '3.9'
 
 x-base_service: &base_service
     ports:
-      - "7860:7860"
+      - "80:80"
     volumes:
       - &v1 ./data:/data
       - &v2 ./output:/output
@@ -29,29 +29,5 @@ services:
     build: ./services/AUTOMATIC1111
     image: sd-auto:14
     environment:
-      - CLI_ARGS=--allow-code --medvram --xformers
-
-  auto-cpu:
-    <<: *automatic
-    profiles: ["auto-cpu"]
-    deploy: {}
-    environment:
-      - CLI_ARGS=--no-half --precision full
-
-  hlky:
-    <<: *base_service
-    profiles: ["hlky"]
-    build: ./services/hlky/
-    image: sd-hlky:7
-    environment:
-      - CLI_ARGS=--optimized-turbo
-      - USE_STREAMLIT=0
-
-  lstein:
-    <<: *base_service
-    profiles: ["lstein"]
-    build: ./services/lstein/
-    image: sd-lstein:5
-    environment:
-      - PRELOAD=true
-      - CLI_ARGS=--max_loaded_models=1
+      - CLI_ARGS=--allow-code --xformers --api
+    restart: always
